@@ -1,0 +1,27 @@
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#audio-file {
+    display: block;
+    margin: 20px auto;
+}
+
+#audio-preview {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#predict-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#prediction-result {
+    font-weight: bold;
+}

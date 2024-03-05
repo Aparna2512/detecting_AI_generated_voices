@@ -5,7 +5,7 @@ import librosa
 import numpy as np
 
 app = Flask(__name__)
-model = load_model('Model.h5')
+model = load_model('Models/LSTM_Model.h5')
 
 def extract_features(file_path, segment_length):
     try:

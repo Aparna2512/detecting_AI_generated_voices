@@ -16,9 +16,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   predictButton.addEventListener("click", () => {
-    // Call Flask endpoint to predict
-    // You may want to use fetch() or Axios to send the audio file to Flask
-    // and receive the prediction result
-    predictionResult.textContent = "Prediction: [Human/AI]";
-  });
+    // Preprocessing code
+    const file = audioFileInput.files[0];
+    const formData = new FormData();
+    formData.append("audio", file);
+    fetch("/predict", {
+        method: "POST",
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        let avg = 0;
+        for(let i = 0; i < data.result.length; i++){
+          avg = avg + data.result[i];
+        }
+        avg = avg/data.result.length;
+        if(avg >= 0.5)  
+          predictionResult.textContent = `Prediction: Real`;
+        else 
+          predictionResult.textContent = `Prediction: Fake`;
+    })
+    .catch(error => {
+        console.error("Error during prediction:", error);
+    });
+});
 });
